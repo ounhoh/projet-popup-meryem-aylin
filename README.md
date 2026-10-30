@@ -21,12 +21,11 @@ npm run build:production
 
 ```text
 src/app/
-├── core/data + models       # données de démonstration et types
-├── pages/home               # composition de la page d’accueil
-└── shared/components        # composants réutilisables
+├── core/data + models       
+├── pages/home               
+└── shared/components        
 ```
 
-Les contenus d’événements sont fictifs. Les images utilisent actuellement des URLs Unsplash afin de garder le prototype léger ; elles peuvent ensuite être remplacées par des fichiers dans `src/assets/images`.
 
 ## Push GitHub
 
