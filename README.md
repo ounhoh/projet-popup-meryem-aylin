@@ -34,6 +34,6 @@ Depuis le dossier du projet déjà cloné :
 
 ```bash
 git add .
-git commit -m "feat: add POP UP Angular homepage"
+git commit -m "add POP UP Angular homepage"
 git push origin main
 ```
