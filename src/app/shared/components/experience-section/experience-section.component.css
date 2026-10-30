@@ -1,0 +1,121 @@
+.experience-section {
+  padding: 94px 0;
+  background: var(--ink);
+  color: var(--paper-2);
+}
+
+.experience-section .section-kicker {
+  color: var(--matcha);
+}
+
+.experience-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.56fr);
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 42px;
+}
+
+.experience-head p {
+  max-width: 360px;
+  margin: 0;
+  color: rgba(252, 248, 242, 0.65);
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.experience-card {
+  min-height: 260px;
+  padding: 24px;
+  border: 1px solid rgba(252, 248, 242, 0.14);
+  border-radius: var(--radius-lg);
+  background: #234a2e;
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.experience-card:nth-child(2) {
+  background: #b96850;
+}
+
+.experience-card:nth-child(3) {
+  background: #d7c6ac;
+  color: var(--ink);
+}
+
+.experience-card:hover {
+  background: #3d6c48;
+  transform: translateY(-5px) rotate(-1deg);
+}
+
+.experience-card:nth-child(2):hover {
+  background: #d77b5d;
+}
+
+.experience-card:nth-child(3):hover {
+  background: #e3d6c2;
+}
+
+.experience-icon {
+  display: grid;
+  width: 51px;
+  height: 51px;
+  margin-bottom: 52px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.2);
+  font-size: 1.45rem;
+}
+
+.experience-card:nth-child(3) .experience-icon {
+  background: rgba(23, 23, 22, 0.08);
+}
+
+.experience-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  letter-spacing: -0.045em;
+}
+
+.experience-card p {
+  max-width: 300px;
+  margin: 0;
+  color: rgba(252, 248, 242, 0.72);
+  font-size: 0.88rem;
+}
+
+.experience-card:nth-child(3) p {
+  color: rgba(23, 23, 22, 0.65);
+}
+
+@media (max-width: 860px) {
+  .experience-head {
+    display: block;
+  }
+
+  .experience-head p {
+    margin-top: 18px;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    min-height: 220px;
+  }
+
+  .experience-icon {
+    margin-bottom: 35px;
+  }
+}
+
+@media (max-width: 580px) {
+  .experience-section {
+    padding: 75px 0;
+  }
+}

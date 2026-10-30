@@ -1,0 +1,30 @@
+<header class="site-header" [class.menu-open]="menuOpen">
+  <div class="container nav">
+    <app-brand-logo />
+
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="#events" (click)="closeMenu()">Découvrir</a>
+      <a href="#experience" (click)="closeMenu()">L’esprit POP UP</a>
+      <a href="#organizers" (click)="closeMenu()">Organiser</a>
+      <a href="#newsletter" (click)="closeMenu()">À propos</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="button button-soft desktop-only" type="button" (click)="requestAccount()">
+        Se connecter
+      </button>
+      <button class="button button-dark" type="button" (click)="requestAccount()">
+        Créer un compte <span aria-hidden="true">↗</span>
+      </button>
+      <button
+        class="menu-toggle"
+        type="button"
+        [attr.aria-expanded]="menuOpen"
+        [attr.aria-label]="menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
+        (click)="toggleMenu()"
+      >
+        {{ menuOpen ? '×' : '☰' }}
+      </button>
+    </div>
+  </div>
+</header>

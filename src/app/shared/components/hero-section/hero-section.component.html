@@ -1,0 +1,62 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">La nouvelle sortie de votre agenda</span>
+      <h1 id="hero-title">Faites <em>popper</em> votre ville.</h1>
+      <p>
+        Des événements tendance, des rencontres qui font sourire et des idées à vivre
+        en vrai — juste à côté de chez vous.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-dark" href="#events">Explorer les événements <span aria-hidden="true">↘</span></a>
+        <button class="button button-soft" type="button" (click)="organizerRequested.emit()">
+          J’ai une idée d’événement
+        </button>
+      </div>
+      <div class="hero-proof">
+        <div class="avatar-stack" aria-hidden="true">
+          <span class="avatar">✦</span>
+          <span class="avatar">♡</span>
+          <span class="avatar">☼</span>
+        </div>
+        <span>Des expériences locales, pensées avec amour.</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Aperçu d’un événement POP UP">
+      <div class="hero-sticker">IRL<span>c’est mieux</span></div>
+      <article class="hero-card">
+        <div class="hero-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1000&q=85"
+            alt="Un matcha latte posé sur une table"
+          />
+          <div class="hero-card-topline">
+            <span>À la une près de vous</span>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </div>
+        <div class="hero-card-caption">
+          <div>
+            <h3>Matcha Social Club</h3>
+            <p>Paris · Atelier, dégustation &amp; rencontres</p>
+          </div>
+          <span class="mini-date">15<br />NOV</span>
+        </div>
+      </article>
+
+      <aside class="floating-note">
+        <div class="floating-note-head"><span>Le petit plus</span><span>✦</span></div>
+        <h4>Venez comme vous êtes.</h4>
+        <p>Seul·e, entre ami·es ou avec votre meilleure idée.</p>
+        <span class="note-action">Découvrir l’expérience <span aria-hidden="true">↗</span></span>
+      </aside>
+    </div>
+  </div>
+
+  <div class="container trusted-row">
+    <span></span>
+    <strong>Pop-up · seconde main · beauté · food · communautés</strong>
+    <span></span>
+  </div>
+</section>

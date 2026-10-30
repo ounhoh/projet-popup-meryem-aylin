@@ -1,0 +1,25 @@
+@if (event; as selectedEvent) {
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="event-modal-title" (click)="closeFromBackdrop($event.target, $event.currentTarget)">
+    <div class="modal">
+      <button class="modal-close" type="button" aria-label="Fermer" (click)="closed.emit()">×</button>
+      <div class="modal-image">
+        <img [src]="selectedEvent.image" [alt]="selectedEvent.imageAlt" />
+      </div>
+      <div class="modal-body">
+        <div class="modal-eyebrow">{{ selectedEvent.type }}</div>
+        <h2 id="event-modal-title">{{ selectedEvent.title }}</h2>
+        <div class="modal-meta">
+          <span>⌖ {{ selectedEvent.location }}</span>
+          <span>◷ {{ selectedEvent.date }} · {{ selectedEvent.time }}</span>
+        </div>
+        <p class="modal-description">{{ selectedEvent.description }}</p>
+        <div class="modal-foot">
+          <small>Réservation visuelle uniquement · prototype</small>
+          <button class="button button-green" type="button" (click)="accountRequested.emit()">
+            Je veux être prévenu·e <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

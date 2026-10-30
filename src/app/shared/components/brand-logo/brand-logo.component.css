@@ -1,0 +1,41 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.brand-mark {
+  position: relative;
+  display: grid;
+  width: 31px;
+  height: 25px;
+  place-items: center;
+  border: 1.5px solid var(--ink);
+  border-radius: 50% 50% 50% 12px;
+  background: var(--matcha);
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.brand-mark::after {
+  position: absolute;
+  right: 1px;
+  bottom: -5px;
+  width: 9px;
+  height: 9px;
+  border-bottom: 1.5px solid var(--ink);
+  border-left: 1.5px solid var(--ink);
+  background: var(--matcha);
+  content: "";
+  transform: rotate(-18deg) skew(-22deg);
+}
+
+.brand-mark span {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-1px);
+}

@@ -1,0 +1,19 @@
+.page {
+  min-height: 100vh;
+  overflow: clip;
+}
+
+.announcement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 8px 20px;
+  color: #21412a;
+  background: var(--matcha);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}

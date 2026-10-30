@@ -1,0 +1,121 @@
+.site-header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  border-bottom: 1px solid transparent;
+  background: rgba(247, 242, 235, 0.86);
+  backdrop-filter: blur(18px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 78px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+
+.main-nav a {
+  position: relative;
+  color: #4f4b45;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.main-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -9px;
+  left: 0;
+  height: 2px;
+  background: var(--terracotta);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 160ms ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.68);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1050px) {
+  .main-nav {
+    gap: 17px;
+  }
+}
+
+@media (max-width: 860px) {
+  .main-nav,
+  .desktop-only {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .site-header.menu-open .main-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 17px;
+    left: 17px;
+    display: grid;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(255, 253, 249, 0.96);
+    box-shadow: var(--shadow);
+  }
+
+  .site-header.menu-open .main-nav a {
+    padding: 14px;
+    border-radius: 13px;
+  }
+
+  .site-header.menu-open .main-nav a:hover {
+    background: var(--paper);
+  }
+
+  .site-header.menu-open .main-nav a::after {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .nav {
+    min-height: 68px;
+  }
+
+  .header-actions .button-dark {
+    min-height: 39px;
+    padding: 0 14px;
+    font-size: 0.75rem;
+  }
+}

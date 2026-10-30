@@ -1,0 +1,112 @@
+.modal-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  padding: 22px;
+  place-items: center;
+  background: rgba(23, 23, 22, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(720px, 92vh);
+  overflow: auto;
+  padding: 13px;
+  border: 1px solid rgba(23, 23, 22, 0.1);
+  border-radius: 27px;
+  background: var(--paper-2);
+  box-shadow: 0 28px 90px rgba(23, 23, 22, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 253, 249, 0.86);
+  font-size: 1.1rem;
+}
+
+.modal-image {
+  display: grid;
+  height: 175px;
+  place-items: center;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 34% 38%, rgba(255, 253, 249, 0.75) 0 9%, transparent 10%),
+    radial-gradient(circle at 67% 58%, rgba(255, 253, 249, 0.52) 0 14%, transparent 15%),
+    var(--pink);
+  color: var(--green-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3rem;
+  letter-spacing: -0.07em;
+}
+
+.modal-image span {
+  transform: rotate(-5deg);
+}
+
+.modal-body {
+  padding: 21px 9px 8px;
+}
+
+.modal-eyebrow {
+  color: var(--terracotta);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.modal h2 {
+  max-width: 460px;
+  margin: 7px 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.96;
+}
+
+.modal-description {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.account-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.account-form input {
+  width: 100%;
+  min-height: 47px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  outline: 0;
+  background: var(--white);
+}
+
+.account-form .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.form-note {
+  min-height: 20px;
+  margin: 10px 14px 0;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+}

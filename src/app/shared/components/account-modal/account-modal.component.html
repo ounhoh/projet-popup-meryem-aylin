@@ -1,0 +1,29 @@
+@if (open) {
+  <div class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="account-modal-title" (click)="closeFromBackdrop($event.target, $event.currentTarget)">
+    <div class="modal account-modal">
+      <button class="modal-close" type="button" aria-label="Fermer" (click)="closed.emit()">×</button>
+      <div class="modal-image" aria-hidden="true"><span>POP<br />UP</span></div>
+      <div class="modal-body">
+        <div class="modal-eyebrow">Bientôt disponible</div>
+        <h2 id="account-modal-title">{{ title }}</h2>
+        <p class="modal-description">{{ description }}</p>
+        <form class="account-form" (ngSubmit)="submit()" #accountForm="ngForm">
+          <input
+            name="email"
+            type="email"
+            [(ngModel)]="email"
+            placeholder="votre@email.com"
+            aria-label="Votre adresse e-mail"
+            required
+          />
+          <button class="button button-dark" type="submit" [disabled]="accountForm.invalid">
+            Me tenir au courant <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+        @if (submitted) {
+          <div class="form-note" aria-live="polite">Merci ! Vous serez prévenu·e dès que POP UP ouvrira ses portes.</div>
+        }
+      </div>
+    </div>
+  </div>
+}

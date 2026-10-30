@@ -1,0 +1,58 @@
+<section class="events-section" id="events" aria-labelledby="events-title">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">La sélection du moment</span>
+        <h2 class="section-title" id="events-title">Les pépites à vivre <em>près de vous.</em></h2>
+      </div>
+      <p>
+        Un aperçu de l’univers POP UP. Les cartes ci-dessous sont des contenus de démonstration
+        pour le prototype.
+      </p>
+    </div>
+
+    <div class="event-toolbar">
+      <div class="filters" role="group" aria-label="Filtrer les événements">
+        @for (filter of categoryFilters; track filter.value) {
+          <button
+            class="filter"
+            type="button"
+            [class.is-active]="activeFilter === filter.value"
+            (click)="selectFilter(filter.value)"
+          >
+            {{ filter.label }}
+          </button>
+        }
+      </div>
+
+      <label class="location-control">
+        <span aria-hidden="true">⌖</span>
+        <span>Autour de</span>
+        <select [(ngModel)]="selectedCity" aria-label="Choisir une ville">
+          <option value="all">Toutes les villes</option>
+          <option value="Paris">Paris</option>
+          <option value="Lyon">Lyon</option>
+          <option value="Bordeaux">Bordeaux</option>
+          <option value="Lille">Lille</option>
+          <option value="Marseille">Marseille</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="event-grid">
+      @for (event of filteredEvents; track trackById($index, event)) {
+        <app-event-card [event]="event" (selected)="eventSelected.emit($event)" />
+      } @empty {
+        <div class="empty-state">
+          Pas encore de pépite dans cette sélection. Essaie une autre ville ou un autre univers.
+        </div>
+      }
+    </div>
+
+    <div class="map-link-row">
+      <button class="text-button" type="button" disabled title="La carte sera connectée dans une prochaine version">
+        <span>Voir la carte des événements</span><span aria-hidden="true">↗</span>
+      </button>
+    </div>
+  </div>
+</section>

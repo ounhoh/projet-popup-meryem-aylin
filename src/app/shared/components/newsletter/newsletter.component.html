@@ -1,0 +1,30 @@
+<section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter-panel">
+      <div>
+        <span class="section-kicker">Le mot de passe pour ne rien rater</span>
+        <h2 class="section-title" id="newsletter-title">Les prochaines pépites arrivent dans votre boîte.</h2>
+        <p>Une sélection douce, pas une avalanche de notifications.</p>
+      </div>
+
+      <div>
+        <form class="newsletter-form" (ngSubmit)="submit()" #newsletterForm="ngForm">
+          <input
+            name="email"
+            type="email"
+            [(ngModel)]="email"
+            placeholder="votre@email.com"
+            aria-label="Votre adresse e-mail"
+            required
+          />
+          <button class="button button-green" type="submit" [disabled]="newsletterForm.invalid">
+            Je m’inscris
+          </button>
+        </form>
+        @if (submitted) {
+          <div class="form-note" aria-live="polite">C’est noté — votre place est gardée pour les prochaines pépites ✦</div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
