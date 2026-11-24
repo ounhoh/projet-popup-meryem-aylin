@@ -11,6 +11,14 @@ npm start
 
 Puis ouvrir `http://localhost:4200`.
 
+## Carte interactive
+
+La page `/map` utilise Leaflet avec les tuiles OpenStreetMap. Elle s'ouvre dans un nouvel
+onglet depuis la page d'accueil, affiche un repère par événement et conserve le détail
+des événements au clic.
+
+La carte affiche l'attribution obligatoire **© OpenStreetMap contributors**.
+
 ## Vérifier le build
 
 ```bash
@@ -21,11 +29,12 @@ npm run build:production
 
 ```text
 src/app/
-├── core/data + models       
-├── pages/home               
-└── shared/components        
+├── core/data + models       # données de démonstration et types
+├── pages/home               # composition de la page d’accueil
+└── shared/components        # composants réutilisables
 ```
 
+Les contenus d’événements sont fictifs. Les images utilisent actuellement des URLs Unsplash afin de garder le prototype léger ; elles peuvent ensuite être remplacées par des fichiers dans `src/assets/images`.
 
 ## Push GitHub
 
@@ -33,6 +42,6 @@ Depuis le dossier du projet déjà cloné :
 
 ```bash
 git add .
-git commit -m "add POP UP Angular homepage"
+git commit -m "feat: add POP UP Angular homepage"
 git push origin main
 ```

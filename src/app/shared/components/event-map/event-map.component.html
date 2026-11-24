@@ -1,0 +1,36 @@
+<section
+  class="event-map"
+  [class.event-map--full-page]="fullPage"
+  [attr.id]="fullPage ? null : 'event-map'"
+  [attr.aria-labelledby]="fullPage ? null : 'event-map-title'"
+>
+  @if (!fullPage) {
+    <div class="event-map__head">
+      <div>
+        <span class="section-kicker">La carte POP UP</span>
+        <h3 id="event-map-title">Les événements, <em>en un coup d’œil.</em></h3>
+      </div>
+      <p class="event-map__count">
+        {{ events.length }} événement{{ events.length > 1 ? 's' : '' }} affiché{{ events.length > 1 ? 's' : '' }}
+      </p>
+    </div>
+  }
+
+  <div class="map-frame">
+    <div #mapContainer class="map-canvas" aria-label="Carte des événements OpenStreetMap"></div>
+
+    @if (events.length === 0) {
+      <div class="map-overlay map-overlay--message">
+        <strong>Aucun événement dans cette sélection</strong>
+        <p>Essaie une autre ville ou un autre univers.</p>
+      </div>
+    }
+  </div>
+
+  @if (!fullPage) {
+    <div class="map-note">
+      <span class="map-note__dot" aria-hidden="true"></span>
+      <span>Clique sur un repère pour ouvrir le détail de l’événement.</span>
+    </div>
+  }
+</section>

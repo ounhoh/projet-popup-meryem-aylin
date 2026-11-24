@@ -1,0 +1,126 @@
+<div class="map-page">
+  <app-event-map
+    [events]="filteredEvents"
+    [fullPage]="true"
+    (eventSelected)="selectEvent($event)"
+  />
+
+  <header class="map-page__topbar">
+    <nav class="map-page__quick-nav" aria-label="Navigation de la carte">
+      <a routerLink="/">Accueil</a>
+      <a class="is-active" href="/map" aria-current="page">Carte</a>
+    </nav>
+  </header>
+
+  <aside class="map-page__sidebar" aria-label="Explorer les événements">
+    <a class="map-page__sidebar-brand" routerLink="/" aria-label="Retour à l'accueil">
+      <span class="map-page__logo-mark" aria-hidden="true">⌣</span>
+      <span>POP UP</span>
+    </a>
+
+    <div class="map-page__sidebar-head">
+      <div>
+        <span class="map-page__eyebrow">Explorer</span>
+        <h1>Les pépites<br /><em>près de vous.</em></h1>
+      </div>
+      <span class="map-page__count">{{ filteredEvents.length }}</span>
+    </div>
+
+    <label class="map-page__search">
+      <span aria-hidden="true">⌕</span>
+      <input
+        type="search"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="keepSelectedEventVisible()"
+        placeholder="Rechercher une ville..."
+        aria-label="Rechercher une ville ou un événement"
+      />
+    </label>
+
+    <div class="map-page__section-label">Univers à découvrir</div>
+
+    <div class="map-page__filters">
+      @for (filter of filters; track filter.value) {
+        <button
+          class="map-page__filter"
+          [class.is-active]="activeFilter === filter.value"
+          type="button"
+          (click)="selectFilter(filter.value)"
+        >
+          <span>{{ filter.label }}</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+      }
+    </div>
+
+    <div class="map-page__section-label map-page__section-label--results">Événements sur la carte</div>
+
+    <div class="map-page__results">
+      @for (event of filteredEvents; track event.id) {
+        <button
+          class="map-page__result"
+          [class.is-selected]="selectedEvent?.id === event.id"
+          type="button"
+          (click)="selectEvent(event)"
+        >
+          <span class="map-page__result-city">{{ event.city }}</span>
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.date }} · {{ event.time }}</span>
+        </button>
+      } @empty {
+        <p class="map-page__empty">Aucun événement dans cette sélection.</p>
+      }
+    </div>
+  </aside>
+
+  @if (selectedEvent; as event) {
+    <aside class="map-page__detail" aria-label="Détail de l’événement sélectionné">
+      <div class="map-page__detail-topline">
+        <span class="map-page__detail-icons" aria-hidden="true">✦　☕　✷</span>
+        <button class="map-page__close" type="button" (click)="clearSelectedEvent()" aria-label="Fermer le détail">
+          ×
+        </button>
+      </div>
+
+      <img class="map-page__detail-image" [src]="event.image" [alt]="event.imageAlt" />
+
+      <div class="map-page__detail-content">
+        <span class="map-page__detail-category">{{ event.type }}</span>
+        <h2>{{ event.title }}</h2>
+
+        <div class="map-page__detail-meta">
+          <span><strong>⌖</strong> {{ event.location }}</span>
+          <span><strong>□</strong> {{ event.date }} · {{ event.time }}</span>
+        </div>
+
+        <p>{{ event.description }}</p>
+
+        <button class="map-page__detail-cta" type="button" (click)="openEventDetails()">
+          Voir le détail complet <span aria-hidden="true">↗</span>
+        </button>
+
+        <div class="map-page__route">
+          <div class="map-page__route-head">
+            <strong>Plan de route</strong>
+            <a
+              [href]="'https://www.openstreetmap.org/directions?to=' + event.coordinates.lat + '%2C' + event.coordinates.lng"
+              target="_blank"
+              rel="noopener"
+            >
+              Itinéraire ↗
+            </a>
+          </div>
+          <div class="map-page__route-preview" aria-hidden="true">
+            <span class="map-page__route-line"></span>
+            <span class="map-page__route-pin">●</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  }
+
+  <app-event-modal
+    [event]="modalEvent"
+    (closed)="closeEventDetails()"
+  />
+</div>

@@ -1,5 +1,10 @@
 export type EventCategory = 'matcha' | 'mode' | 'beaute' | 'seconde-main';
 
+export interface EventCoordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface PopUpEvent {
   id: string;
   title: string;
@@ -7,6 +12,7 @@ export interface PopUpEvent {
   type: string;
   city: string;
   location: string;
+  coordinates: EventCoordinates;
   date: string;
   time: string;
   image: string;

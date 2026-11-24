@@ -175,3 +175,57 @@ h2 em {
     font-size: 2.75rem;
   }
 }
+
+/* Leaflet is rendered dynamically, so these visual adjustments belong to the global stylesheet. */
+.map-page .leaflet-container {
+  color: var(--ink);
+  background: #e8e0d3;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+.map-page .leaflet-tile-pane {
+  filter: saturate(0.58) sepia(0.08) brightness(1.08);
+}
+
+.map-page .leaflet-control-zoom {
+  overflow: hidden;
+  border: 1px solid rgba(23, 23, 22, 0.12) !important;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(52, 42, 31, 0.14);
+}
+
+.map-page .leaflet-control-zoom a {
+  width: 34px;
+  height: 34px;
+  color: var(--green-deep);
+  background: rgba(255, 252, 246, 0.94);
+  line-height: 32px;
+}
+
+.map-page .leaflet-control-zoom a:hover {
+  color: var(--white);
+  background: var(--green);
+}
+
+.map-page .leaflet-control-attribution {
+  padding: 4px 8px;
+  border-radius: 8px 0 0 0;
+  color: #5d5b55;
+  background: rgba(255, 252, 246, 0.84);
+  font-size: 0.64rem;
+}
+
+.map-page .leaflet-tooltip {
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 8px 18px rgba(52, 42, 31, 0.15);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.map-page .leaflet-tooltip-top::before {
+  border-top-color: var(--white);
+}
