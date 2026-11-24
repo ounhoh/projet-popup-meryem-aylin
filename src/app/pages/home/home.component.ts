@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { POP_UP_EVENTS } from '../../data/events.data';
 import { PopUpEvent } from '../../models/event.model';
@@ -31,9 +32,10 @@ import { SiteHeaderComponent } from '../../shared/components/site-header/site-he
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
+  private readonly router = inject(Router);
+
   readonly events = POP_UP_EVENTS;
   selectedEvent: PopUpEvent | null = null;
-  accountModalOpen = false;
   organizerModalOpen = false;
 
   openEvent(event: PopUpEvent): void {
@@ -45,15 +47,11 @@ export class HomeComponent {
   }
 
   openAccount(): void {
-    this.accountModalOpen = true;
+    void this.router.navigateByUrl('/auth');
   }
 
   openOrganizer(): void {
     this.organizerModalOpen = true;
-  }
-
-  closeAccount(): void {
-    this.accountModalOpen = false;
   }
 
   closeOrganizer(): void {

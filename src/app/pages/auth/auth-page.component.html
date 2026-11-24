@@ -1,0 +1,141 @@
+<main class="auth-layout">
+  <section class="story-panel" aria-label="Bienvenue chez POP UP">
+    <img
+      class="story-image"
+      src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85"
+      alt="Un public réuni lors d'un événement en plein air"
+    />
+    <div class="story-shade"></div>
+
+    <a class="wordmark" routerLink="/" aria-label="POP UP, accueil">POP UP<span>®</span></a>
+
+    <div class="story-copy">
+      <span class="story-kicker"><span></span> Les idées prennent vie ici</span>
+      <h1>La vraie vie<br />se passe <em>ensemble.</em></h1>
+      <p>Des rencontres, des lieux et des événements à découvrir tout près de chez toi.</p>
+      <div class="story-index"><span>01</span><i></i><span>Un peu plus de spontanéité</span></div>
+    </div>
+
+    <p class="story-credit">Des moments qui font du bien, tout simplement.</p>
+  </section>
+
+  <section class="form-panel" aria-labelledby="auth-title">
+    <a class="mobile-wordmark" routerLink="/" aria-label="POP UP, accueil">POP UP<span>®</span></a>
+
+    <div class="form-content">
+      <a class="back-link" routerLink="/">
+        <span aria-hidden="true">←</span> Retour à l’accueil
+      </a>
+
+      <div class="form-heading">
+        <p class="eyebrow">TON ESPACE POP UP</p>
+        <h2 id="auth-title">
+          {{ mode === 'signup' ? 'Rejoins POP UP.' : 'Heureux de te revoir.' }}
+        </h2>
+        <p class="intro-copy">
+          {{ mode === 'signup'
+            ? 'Crée ton compte et garde les bons moments à portée de main.'
+            : 'Connecte-toi pour retrouver tes événements préférés.' }}
+        </p>
+      </div>
+
+      <div class="mode-switch" role="tablist" aria-label="Choisir une option">
+        <button
+          type="button"
+          role="tab"
+          [attr.aria-selected]="mode === 'login'"
+          [class.active]="mode === 'login'"
+          (click)="setMode('login')"
+        >
+          Connexion
+        </button>
+        <button
+          type="button"
+          role="tab"
+          [attr.aria-selected]="mode === 'signup'"
+          [class.active]="mode === 'signup'"
+          (click)="setMode('signup')"
+        >
+          Inscription
+        </button>
+      </div>
+
+      <button class="google-button" type="button" (click)="googlePreview()">
+        <span class="google-mark" aria-hidden="true">G</span>
+        Continuer avec Google
+      </button>
+
+      <div class="separator"><span>ou avec ton e-mail</span></div>
+
+      <form class="auth-form" (submit)="$event.preventDefault(); submitPreview()">
+        @if (mode === 'signup') {
+          <label for="username">Pseudo</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Comment on t’appelle ?"
+            autocomplete="nickname"
+            minlength="3"
+            required
+          />
+        }
+
+        <label for="email">Adresse e-mail</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="toi@exemple.fr"
+          autocomplete="email"
+          required
+        />
+
+        <div class="password-label-row">
+          <label for="password">Mot de passe</label>
+          @if (mode === 'login') {
+            <button type="button" class="forgot-link" (click)="statusMessage = 'La récupération du mot de passe sera bientôt disponible.'">
+              Oublié ?
+            </button>
+          }
+        </div>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          [placeholder]="mode === 'signup' ? '8 caractères minimum' : 'Ton mot de passe'"
+          [attr.autocomplete]="mode === 'signup' ? 'new-password' : 'current-password'"
+          minlength="8"
+          required
+        />
+
+        @if (mode === 'signup') {
+          <label class="terms-check">
+            <input type="checkbox" required />
+            <span>J’accepte les conditions d’utilisation de POP UP.</span>
+          </label>
+        }
+
+        @if (statusMessage) {
+          <p class="status-message" role="status">{{ statusMessage }}</p>
+        }
+
+        <button class="submit-button" type="submit">
+          {{ mode === 'signup' ? 'Créer mon compte' : 'Me connecter' }}
+          <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+
+      <p class="switch-prompt">
+        {{ mode === 'signup' ? 'Tu as déjà un compte ?' : 'Pas encore de compte ?' }}
+        <button type="button" (click)="setMode(mode === 'signup' ? 'login' : 'signup')">
+          {{ mode === 'signup' ? 'Connecte-toi' : 'Inscris-toi' }}
+        </button>
+      </p>
+
+      <p class="fine-print">En continuant, tu acceptes nos conditions et notre politique de confidentialité.</p>
+    </div>
+
+    <span class="form-side-note" aria-hidden="true">FAIS DE LA PLACE AUX BONS MOMENTS</span>
+  </section>
+</main>
