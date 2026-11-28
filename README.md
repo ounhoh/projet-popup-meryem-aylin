@@ -11,13 +11,6 @@ npm start
 
 Puis ouvrir `http://localhost:4200`.
 
-## Carte interactive
-
-La page `/map` utilise Leaflet avec les tuiles OpenStreetMap. Elle s'ouvre dans un nouvel
-onglet depuis la page d'accueil, affiche un repère par événement et conserve le détail
-des événements au clic.
-
-La carte affiche l'attribution obligatoire **© OpenStreetMap contributors**.
 
 ## Vérifier le build
 
