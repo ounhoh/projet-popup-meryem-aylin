@@ -30,10 +30,10 @@
       <div class="form-heading">
         <p class="eyebrow">TON ESPACE POP UP</p>
         <h2 id="auth-title">
-          {{ mode === 'signup' ? 'Rejoins POP UP.' : 'Heureux de te revoir.' }}
+          {{ mode() === 'signup' ? 'Rejoins POP UP.' : 'Heureux de te revoir.' }}
         </h2>
         <p class="intro-copy">
-          {{ mode === 'signup'
+          {{ mode() === 'signup'
             ? 'Crée ton compte et garde les bons moments à portée de main.'
             : 'Connecte-toi pour retrouver tes événements préférés.' }}
         </p>
@@ -43,8 +43,8 @@
         <button
           type="button"
           role="tab"
-          [attr.aria-selected]="mode === 'login'"
-          [class.active]="mode === 'login'"
+          [attr.aria-selected]="mode() === 'login'"
+          [class.active]="mode() === 'login'"
           (click)="setMode('login')"
         >
           Connexion
@@ -52,37 +52,38 @@
         <button
           type="button"
           role="tab"
-          [attr.aria-selected]="mode === 'signup'"
-          [class.active]="mode === 'signup'"
+          [attr.aria-selected]="mode() === 'signup'"
+          [class.active]="mode() === 'signup'"
           (click)="setMode('signup')"
         >
           Inscription
         </button>
       </div>
 
-      <button class="google-button" type="button" (click)="googlePreview()">
+      <button class="google-button" type="button" (click)="google()">
         <span class="google-mark" aria-hidden="true">G</span>
         Continuer avec Google
       </button>
 
       <div class="separator"><span>ou avec ton e-mail</span></div>
 
-      <form class="auth-form" (submit)="$event.preventDefault(); submitPreview()">
-        @if (mode === 'signup') {
-          <label for="username">Pseudo</label>
+      <form #authForm class="auth-form" (submit)="$event.preventDefault(); submit(authForm)">
+        @if (mode() === 'signup') {
+          <label for="firstName">Prénom</label>
           <input
-            id="username"
-            name="username"
+            id="firstName"
+            name="firstName"
             type="text"
             placeholder="Comment on t’appelle ?"
-            autocomplete="nickname"
-            minlength="3"
+            autocomplete="given-name"
+            minlength="2"
             required
           />
         }
 
         <label for="email">Adresse e-mail</label>
         <input
+          #emailInput
           id="email"
           name="email"
           type="email"
@@ -93,43 +94,57 @@
 
         <div class="password-label-row">
           <label for="password">Mot de passe</label>
-          @if (mode === 'login') {
-            <button type="button" class="forgot-link" (click)="statusMessage = 'La récupération du mot de passe sera bientôt disponible.'">
+          @if (mode() === 'login') {
+            <button type="button" class="forgot-link" (click)="forgotPassword(emailInput.value)">
               Oublié ?
             </button>
           }
         </div>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          [placeholder]="mode === 'signup' ? '8 caractères minimum' : 'Ton mot de passe'"
-          [attr.autocomplete]="mode === 'signup' ? 'new-password' : 'current-password'"
-          minlength="8"
-          required
-        />
+        <div class="password-field">
+          <input
+            id="password"
+            name="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            [placeholder]="mode() === 'signup' ? '8 caractères minimum' : 'Ton mot de passe'"
+            [attr.autocomplete]="mode() === 'signup' ? 'new-password' : 'current-password'"
+            minlength="8"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            [attr.aria-label]="showPassword() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+            (click)="showPassword.set(!showPassword())"
+          >
+            @if (showPassword()) {
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+            } @else {
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            }
+          </button>
+        </div>
 
-        @if (mode === 'signup') {
+        @if (mode() === 'signup') {
           <label class="terms-check">
             <input type="checkbox" required />
             <span>J’accepte les conditions d’utilisation de POP UP.</span>
           </label>
         }
 
-        @if (statusMessage) {
-          <p class="status-message" role="status">{{ statusMessage }}</p>
+        @if (statusMessage()) {
+          <p class="status-message" role="status">{{ statusMessage() }}</p>
         }
 
-        <button class="submit-button" type="submit">
-          {{ mode === 'signup' ? 'Créer mon compte' : 'Me connecter' }}
+        <button class="submit-button" type="submit" [disabled]="loading()">
+          {{ mode() === 'signup' ? 'Créer mon compte' : 'Me connecter' }}
           <span aria-hidden="true">↗</span>
         </button>
       </form>
 
       <p class="switch-prompt">
-        {{ mode === 'signup' ? 'Tu as déjà un compte ?' : 'Pas encore de compte ?' }}
-        <button type="button" (click)="setMode(mode === 'signup' ? 'login' : 'signup')">
-          {{ mode === 'signup' ? 'Connecte-toi' : 'Inscris-toi' }}
+        {{ mode() === 'signup' ? 'Tu as déjà un compte ?' : 'Pas encore de compte ?' }}
+        <button type="button" (click)="setMode(mode() === 'signup' ? 'login' : 'signup')">
+          {{ mode() === 'signup' ? 'Connecte-toi' : 'Inscris-toi' }}
         </button>
       </p>
 

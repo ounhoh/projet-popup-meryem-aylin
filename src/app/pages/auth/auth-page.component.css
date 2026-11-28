@@ -283,7 +283,8 @@
   font-weight: 750;
 }
 
-.auth-form > input {
+.auth-form > input,
+.password-field input {
   width: 100%;
   min-height: 48px;
   margin-bottom: 7px;
@@ -296,11 +297,39 @@
   transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
-.auth-form > input::placeholder {
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 46px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  width: 46px;
+  height: 48px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #6f6a61;
+  cursor: pointer;
+}
+
+.toggle-password:hover {
+  color: var(--green);
+}
+
+.auth-form > input::placeholder,
+.password-field input::placeholder {
   color: #a09b92;
 }
 
-.auth-form > input:focus {
+.auth-form > input:focus,
+.password-field input:focus {
   border-color: var(--green);
   background: #fff;
   box-shadow: 0 0 0 3px rgba(47, 91, 57, 0.1);

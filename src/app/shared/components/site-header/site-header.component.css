@@ -70,6 +70,11 @@
   background: var(--green);
 }
 
+.welcome-message {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .header-actions {
   display: flex;
   align-items: center;

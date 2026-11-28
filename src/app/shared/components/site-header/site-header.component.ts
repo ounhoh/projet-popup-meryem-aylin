@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, inject } from '@angular/core';
 
+import { AuthService } from '../../../services/auth.service';
 import { BrandLogoComponent } from '../brand-logo/brand-logo.component';
 
 @Component({
@@ -11,6 +12,8 @@ import { BrandLogoComponent } from '../brand-logo/brand-logo.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SiteHeaderComponent {
+  readonly auth = inject(AuthService);
+
   @Output() readonly accountRequested = new EventEmitter<void>();
 
   menuOpen = false;
